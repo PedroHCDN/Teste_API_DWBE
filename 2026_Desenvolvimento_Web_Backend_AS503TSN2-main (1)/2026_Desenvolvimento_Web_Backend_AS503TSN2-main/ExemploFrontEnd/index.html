@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Usuários cadastrados</h1>
+    <ul class="lista">
+
+    </ul>
+</body>
+<script>
+    fetch('http://localhost:8080/usuario')
+        .then(response => response.json())
+        .then(data => {
+            const lista = document.querySelector('.lista');
+            data.forEach(usuario => {
+                const li = document.createElement('li');
+                li.textContent = `Nome: ${usuario.nome}, E-mail: ${usuario.email}`;
+                lista.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Erro ao buscar usuários:', error));
+</script>
+</html>
